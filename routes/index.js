@@ -4,17 +4,42 @@ const router = express.Router();
 const Guest = require('../models/Guest');
 
 
-//Welcome page
 router.get('/', (req, res) => {
+
     var guests;
     Guest.find({}, function(err, docs){
         if (err) throw err;
         guests = docs;
-    })
-    console.log(guests);
+        if (guests.length != 0){
+            var waitTime = guests.length * 5;
+        } else {
+            var waitTime = 5;
+        }
+        return res.render('Welcome', {waitTime});
+    });
+});
 
-    res.render('Welcome')});
 
-// router.get('/add-new', (req, res) => res.render('Add-New'));
+
+
+
+
+
+//Welcome page
+// router.get('/', (req, res) => {
+//     var guests;
+//     Guest.find({}, function(err, docs){
+//         console.log('after find but before guests print');
+//         if (err) throw err;
+//         guests = docs;
+//         if (typeof guests != 'undefined') {
+//             var waitTime = guests.length;
+//             return render('Welcome', {waitTime});
+//         } else {
+//             var waitTime = 5;
+//             res.render('Welcome', {waitTime});
+//         }
+
+
 
 module.exports = router;

@@ -1,0 +1,22 @@
+{
+  "name": "restaurant-wait-list",
+  "version": "1.0.0",
+  "description": "A simple app that allows you to add your name to a restaurant's wait list and recieve text alerts to notify you when your table is ready.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sophie Dubois",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "express-ejs-layouts": "^2.5.0",
+    "mongoose": "^5.4.20"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  }
+}

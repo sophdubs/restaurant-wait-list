@@ -3,6 +3,10 @@ const router = express.Router();
 
 const Guest = require('../models/Guest');
 
+//Setting up Twilio
+const SID = require('../config/keys').TwilioSID;
+const TOKEN = require('../config/keys').TwilioToken;
+const client = require('twilio')(SID,TOKEN);
 
 router.get('/', (req, res) => {
     var guests;
@@ -18,4 +22,30 @@ router.get('/', (req, res) => {
     });
 });
 
+router.get('/test', (req, res) => {
+    client.messages.create({
+        to: '+61452286187',
+        from: '+61480016097',
+        body: 'testing twilio messages'
+    });
+    res.send('done');
+
+});
+
+function updateDB(index){
+    Guest.find({}, (err, docs) => {
+        if (err) throw err;
+        docs.forEach(function(doc){
+            if (doc.guestNo === index){
+                doc.remove();
+            } else if(doc.guestNo > index){
+                doc.guestNo -= 1;
+                doc.save();
+            }
+        });
+    });
+}
+
+
 module.exports = router;
+

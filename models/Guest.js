@@ -20,6 +20,9 @@ const GuestSchema = new mongoose.Schema({
     preference: {
         type: String,
         required: true
+    },
+    guestNo:{
+        type: Number
     }
 
 });

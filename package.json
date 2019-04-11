@@ -14,7 +14,8 @@
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "express-ejs-layouts": "^2.5.0",
-    "mongoose": "^5.4.20"
+    "mongoose": "^5.4.20",
+    "twilio": "^3.30.0"
   },
   "devDependencies": {
     "nodemon": "^1.18.10"

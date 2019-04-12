@@ -26,5 +26,5 @@ app.use('/customers', require('./routes/customers'));
 
 
 //Set and Listen to port
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 8000;
 app.listen(PORT, console.log(`Server started on port ${PORT}`));

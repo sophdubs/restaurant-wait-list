@@ -7,6 +7,7 @@ const Guest = require('../models/Guest');
 const SID = require('../config/keys').TwilioSID;
 const TOKEN = require('../config/keys').TwilioToken;
 const client = require('twilio')(SID,TOKEN);
+const MessagingResponse = require('twilio').twiml.MessagingResponse;
 
 router.get('/', (req, res) => {
     var guests;
@@ -23,12 +24,22 @@ router.get('/', (req, res) => {
 });
 
 router.get('/test', (req, res) => {
-    client.messages.create({
+    client.messages
+    .create({
         to: '+61452286187',
         from: '+61480016097',
-        body: 'testing twilio messages'
-    });
+        body: 'such a lil bitch tbh'
+    })
+    .then(message => console.log(message.sid));
     res.send('done');
+
+});
+
+router.post('/sms', (req, res) =>{
+    const twiml = new MessagingResponse();
+    twiml.message('The robots are coming');
+
+    res.send(twml.toString());
 
 });
 
